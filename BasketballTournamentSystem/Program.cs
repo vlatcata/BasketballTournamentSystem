@@ -1,4 +1,5 @@
 using BasketballTournamentSystem.Data;
+using BasketballTournamentSystem.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +23,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
+
+// Add services here
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
@@ -52,7 +56,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "Area",
+    name: "Area", //may need to name that "areas"
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 app.MapControllerRoute(
     name: "default",
