@@ -1,11 +1,11 @@
 ﻿using BasketballTournamentSystem.Infrastructure.Data;
-using Microsoft.AspNetCore.Identity;
+using BasketballTournamentSystem.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BasketballTournamentSystem.Data;
 
-public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)

@@ -23,5 +23,19 @@ namespace BasketballTournamentSystem.Core.Services
             })
             .ToListAsync();
         }
+
+        public bool SetRoleRequest(string userId)
+        {
+            var result = true;
+
+            //var user =  context.Users.Where(x => x.HasRoleRequest);
+
+            if (user == null)
+            {
+                result = false;
+            }
+
+            return result;
+        }
     }
 }

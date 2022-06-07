@@ -1,4 +1,5 @@
 ﻿using BasketballTournamentSystem.Core.Contracts;
+using BasketballTournamentSystem.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +8,10 @@ namespace BasketballTournamentSystem.Areas.Admin.Controllers
     public class UserController : BaseController
     {
         private readonly RoleManager<IdentityRole> roleManager;
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly IUserService userService;
 
-        public UserController(RoleManager<IdentityRole> _roleManager, UserManager<IdentityUser> _userManager, IUserService _userService)
+        public UserController(RoleManager<IdentityRole> _roleManager, UserManager<ApplicationUser> _userManager, IUserService _userService)
         {
             roleManager = _roleManager;
             userManager = _userManager;

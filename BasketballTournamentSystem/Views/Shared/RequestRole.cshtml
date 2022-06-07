@@ -1,14 +1,16 @@
-﻿@using Microsoft.AspNetCore.Identity
-@model IdentityUser
+﻿@using BasketballTournamentSystem.Infrastructure.Identity
+@model ApplicationUser
 
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <h3>You need a role to acces this page.</h3>
+<form method="post">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3>You need a role to acces this page.</h3>
 
-                <button asp-controller="User" asp-action="SetRoleRequest" asp-route-Id="@Model.Id" type="button" class="btn mb-1 btn-primary btn-lg">Request a role</button>
+                    <button asp-controller="User" asp-action="SetRoleRequest" asp-route-Id="@Model.Id" type="button" class="btn mb-1 btn-primary btn-lg">Request a role</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
