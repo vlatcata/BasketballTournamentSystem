@@ -37,7 +37,7 @@ namespace BasketballTournamentSystem.Controllers
         {
             var players = await playerService.GetAllPlayers();
 
-            return View(players);
+            return View("AllPlayers", players);
         }
     }
 }
