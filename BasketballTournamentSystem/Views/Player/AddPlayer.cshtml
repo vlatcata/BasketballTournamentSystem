@@ -1,63 +1,84 @@
-﻿<form method="post">
+﻿@using BasketballTournamentSystem.Core.Models.Player
+@model PlayerViewModel
+
+<form method="post" novalidate="novalidate" class="form-valide">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="card">
         <div class="card-body">
             <div class="form-validation">
-                <form class="form-valide" action="#" method="post" novalidate="novalidate">
-                    <div class="form-group row">
-                        <label class="col-lg-4 col-form-label" for="val-username">
-                            Name <span class="text-danger">*</span>
-                        </label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Enter a username..">
-                        </div>
+                <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" for="val-username">
+                        Name <span class="text-danger">*</span>
+                    </label>
+                    <div class="col-lg-6">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <input asp-for="Name" type="text" name="Name" class="form-control" placeholder="Enter player name..">
                     </div>
-                    <div class="form-group row">
-                        <label class="col-lg-4 col-form-label" for="val-email">
-                            Number <span class="text-danger">*</span>
-                        </label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" id="val-email" name="val-email" placeholder="Your valid email..">
-                        </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" for="val-email">
+                        Number <span class="text-danger">*</span>
+                    </label>
+                    <div class="col-lg-6">
+                        <span asp-validation-for="Number" class="text-danger"></span>
+                        <input asp-for="Number" type="text" name="Number" class="form-control" placeholder="Enter player number..">
                     </div>
-                    <div class="form-group row">
-                        <label class="col-lg-4 col-form-label" for="val-password">
-                            Stamina <span class="text-danger">*</span>
-                        </label>
-                        <div class="col-lg-6">
-                            <input type="password" class="form-control" id="val-password" name="val-password" placeholder="Choose a safe one..">
-                        </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" for="val-password">
+                        Stamina <span class="text-danger">*</span>
+                    </label>
+                    <div class="col-lg-6">
+                        <span asp-validation-for="Stamina" class="text-danger"></span>
+                        <input asp-for="Stamina" type="text" name="Stamina" class="form-control" placeholder="Enter player stamina..">
                     </div>
-                    <div class="form-group row">
-                        <label class="col-lg-4 col-form-label" for="val-confirm-password">
-                            Scores <span class="text-danger">*</span>
-                        </label>
-                        <div class="col-lg-6">
-                            <input type="password" class="form-control" id="val-confirm-password" name="val-confirm-password" placeholder="..and confirm it!">
-                        </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" for="val-confirm-password">
+                        Image Url <span class="text-danger">*</span>
+                    </label>
+                    <div class="col-lg-6">
+                        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        <input asp-for="ImageUrl" type="text" name="ImageUrl" class="form-control" placeholder="Enter image url..">
                     </div>
-                    <div class="form-group row">
-                        <label class="col-lg-4 col-form-label" for="val-suggestions">
-                            Speed <span class="text-danger">*</span>
-                        </label>
-                        <div class="col-lg-6">
-                            <textarea class="form-control" id="val-suggestions" name="val-suggestions" rows="5" placeholder="What would you like to see?"></textarea>
-                        </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" for="val-suggestions">
+                        Scores <span class="text-danger">*</span>
+                    </label>
+                    <div class="col-lg-6">
+                        <span asp-validation-for="Scores" class="text-danger"></span>
+                        <input asp-for="Scores" type="text" name="Scores" class="form-control" placeholder="Scores so far..">
                     </div>
-                    <div class="form-group row">
-                        <label class="col-lg-4 col-form-label" for="val-suggestions">
-                            Games Won <span class="text-danger">*</span>
-                        </label>
-                        <div class="col-lg-6">
-                            <textarea class="form-control" id="val-suggestions" name="val-suggestions" rows="5" placeholder="What would you like to see?"></textarea>
-                        </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" for="val-suggestions">
+                        Speed <span class="text-danger">*</span>
+                    </label>
+                    <div class="col-lg-6">
+                        <span asp-validation-for="Speed" class="text-danger"></span>
+                        <input asp-for="Speed" type="text" name="Speed" class="form-control" placeholder="Enter player speed..">
                     </div>
-                    <div class="form-group row">
-                        <div class="col-lg-8 ml-auto">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" for="val-suggestions">
+                        Games Won <span class="text-danger">*</span>
+                    </label>
+                    <div class="col-lg-6">
+                        <span asp-validation-for="GamesWon" class="text-danger"></span>
+                        <input asp-for="GamesWon" type="text" name="GamesWon" class="form-control" placeholder="Games won so far..">
                     </div>
-                </form>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-8 ml-auto">
+                        <button asp-controller="Player" asp-action="AddPlayer" type="submit" method="post" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </form>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

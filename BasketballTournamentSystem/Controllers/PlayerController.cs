@@ -1,4 +1,6 @@
 ﻿using BasketballTournamentSystem.Core.Contracts;
+using BasketballTournamentSystem.Core.Models.Player;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BasketballTournamentSystem.Controllers
@@ -12,9 +14,30 @@ namespace BasketballTournamentSystem.Controllers
             playerService = _playerService;
         }
 
-        public IActionResult Index()
+        [Authorize]
+        public IActionResult AddPlayer()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPlayer(PlayerViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await playerService.CreatePlayer(model);
+
+            return View();
+        }
+
+        public async Task<IActionResult> GetAllPlayers()
+        {
+            var players = await playerService.GetAllPlayers();
+
+            return View(players);
         }
     }
 }

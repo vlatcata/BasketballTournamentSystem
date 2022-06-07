@@ -26,7 +26,7 @@
         ***********************************-->
         <div class="nav-header">
             <div class="brand-logo">
-                <a href="index.html">
+                <a href="/">
                     <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
                     <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
                     <span class="brand-title">
@@ -86,53 +86,7 @@
             Sidebar start
         ***********************************-->
         <div class="nk-sidebar">
-            <div class="nk-nav-scroll">
-                <ul class="metismenu" id="menu">
-                    @if (User.IsInRole("Administrator"))
-                    {
-                        <li class="nav-label">Users</li>
-                        <li>
-                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Manage users</span>
-                            </a>
-                            <ul aria-expanded="false">
-                                <li><a asp-area="Admin" asp-controller="User" asp-action="ManageUsers">View all users</a></li>
-                            </ul>
-                        </li>
-                    }
-
-                    <li class="nav-label">Players</li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Players</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./index.html">View all players</a></li>
-                            <li><a href="./index.html">Add a player</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-label">Teams</li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-envelope menu-icon"></i> <span class="nav-text">Teams</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./email-inbox.html">View all teams</a></li>
-                            <li><a href="./email-read.html">Add a team</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-label">Tournaments</li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-grid menu-icon"></i><span class="nav-text">Tournaments</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./ui-accordion.html">View all tournaments</a></li>
-                            <li><a href="./ui-alert.html">Create new tournament</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+            <partial name="_SidebarPartial" />
         </div>
         <!--**********************************
             Sidebar end

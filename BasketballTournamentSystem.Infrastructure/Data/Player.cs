@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BasketballTournamentSystem.Infrastructure.Data
 {
@@ -35,8 +34,7 @@ namespace BasketballTournamentSystem.Infrastructure.Data
         [Required]
         public int GamesWon { get; set; }
 
-        [ForeignKey(nameof(TeamId))]
-        public Team Team { get; set; }
-        public Guid TeamId { get; set; }
+        [Required]
+        public bool IsInTeam { get; set; }
     }
 }

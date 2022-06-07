@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BasketballTournamentSystem.Core.Models.Player;
 
 namespace BasketballTournamentSystem.Core.Contracts
 {
     public interface IPlayerService
     {
+        Task<bool> CreatePlayer(PlayerViewModel model);
+
+        Task<List<PlayerViewModel>> GetAllPlayers();
     }
 }

@@ -8,6 +8,8 @@ namespace BasketballTournamentSystem.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IPlayerService, PlayerService>();
+
 
             return services;
         }
