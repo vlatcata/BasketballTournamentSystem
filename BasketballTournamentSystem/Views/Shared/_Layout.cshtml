@@ -1,74 +1,187 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Bare - Start Bootstrap Template</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="~/css/styles.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>BasketballTS</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon.png">
+    <!-- Custom Stylesheet -->
+    <link href="~/css/style.css" rel="stylesheet">
 
     @await RenderSectionAsync("Head", false)
+
 </head>
+
 <body>
-    <!-- Responsive navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
 
-                    @if (!User.Identity.IsAuthenticated)
-                    {
-                        <li class="nav-item">
-                            <a asp-area="Identity" asp-controller="Account" asp-action="Register" class="nav-link active" aria-current="page">Sign up</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-area="Identity" asp-controller="Account" asp-action="Login" class="nav-link">Login</a>
-                        </li>
-                    }
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <div class="brand-logo">
+                <a href="index.html">
+                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
+                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <span class="brand-title">
+                        <img src="images/logo-text.png" alt="">
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">
+            <div class="header-content clearfix">
 
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        @if (User.IsInRole("Administrator"))
+                <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="toggle-icon"><i class="icon-menu"></i></span>
+                    </div>
+                </div>
+                <div class="header-left">
+                    <div class="input-group icons">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <ul class="clearfix">
+
+                        @if (!User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a asp-area="Admin" asp-controller="User" asp-action="ManageUsers" class="nav-link">Manage users</a>
+                            <li class="icons dropdown">
+                                <a asp-area="Identity" asp-controller="Account" asp-action="Register" class="btn btn-block btn-outline-secondary btn-lg" aria-current="page">Sign up</a>
+                            </li>
+                            <li class="icons dropdown">
+                                <a asp-area="Identity" asp-controller="Account" asp-action="Login" class="btn btn-block btn-outline-secondary btn-lg">Login</a>
                             </li>
                         }
 
-                        <li class="nav-item">
-                            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                                <button class="btn nav-link active">Logout</button>
-                            </form>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li class="icons dropdown">
+                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                                    <a class="btn btn-block btn-outline-secondary btn-lg">Logout</a>
+                                </form>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li class="nav-label">Users</li>
+                        <li>
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Manage users</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a asp-area="Admin" asp-controller="User" asp-action="ManageUsers">View all users</a></li>
                             </ul>
                         </li>
                     }
+
+                    <li class="nav-label">Players</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Players</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./index.html">View all players</a></li>
+                            <li><a href="./index.html">Add a player</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-label">Teams</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-envelope menu-icon"></i> <span class="nav-text">Teams</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./email-inbox.html">View all teams</a></li>
+                            <li><a href="./email-read.html">Add a team</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-label">Tournaments</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-grid menu-icon"></i><span class="nav-text">Tournaments</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./ui-accordion.html">View all tournaments</a></li>
+                            <li><a href="./ui-alert.html">Create new tournament</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
-    </nav>
-    <!-- Page content-->
-    <div class="container">
-        @RenderBody()
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                </div>
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
     </div>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="~/js/scripts.js"></script>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="~/plugins/common/common.min.js"></script>
+    <script src="~/js/custom.min.js"></script>
+    <script src="~/js/settings.js"></script>
+    <script src="~/js/gleek.js"></script>
+    <script src="~/js/styleSwitcher.js"></script>
+
     @await RenderSectionAsync("Scripts", false)
+
 </body>
+
 </html>
