@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BasketballTournamentSystem.Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,12 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
         : base(options)
     {
     }
+
+    public DbSet<Player> Players { get; set; }
+
+    public DbSet<Team> Teams { get; set; }
+
+    public DbSet<Tournament> Tournaments { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
