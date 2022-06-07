@@ -1,6 +1,7 @@
 ﻿using BasketballTournamentSystem.Core.Contracts;
 using BasketballTournamentSystem.Core.Models.Player;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BasketballTournamentSystem.Controllers
@@ -8,19 +9,27 @@ namespace BasketballTournamentSystem.Controllers
     public class PlayerController : Controller
     {
         private readonly IPlayerService playerService;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public PlayerController(IPlayerService _playerService)
+        public PlayerController(IPlayerService _playerService, UserManager<IdentityUser> _userManager)
         {
             playerService = _playerService;
+            userManager = _userManager;
         }
 
         [Authorize]
-        public IActionResult AddPlayer()
+        public async Task<IActionResult> AddPlayer()
         {
+            if (!User.IsInRole("Guest"))
+            {
+                var user = await userManager.GetUserAsync(User);
+                return View("RequestRole", user);
+            }
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddPlayer(PlayerViewModel model)
         {
             if (!ModelState.IsValid)

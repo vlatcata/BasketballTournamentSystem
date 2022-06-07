@@ -29,6 +29,20 @@ namespace BasketballTournamentSystem.Areas.Admin.Controllers
             return View(users);
         }
 
+        public async Task<IActionResult> SetRoleRequest(string userId)
+        {
+            var result = userService.SetRoleRequest(userId);
+
+            return View();
+        }
+
+        public async Task<IActionResult> GiveRole()
+        {
+            var users = await userService.GetUsers();
+
+            return View(users);
+        }
+
         public async Task<IActionResult> CreateRole()
         {
             //await roleManager.CreateAsync(new IdentityRole()
