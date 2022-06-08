@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <h3>You need a role to acces this page.</h3>
 
-                    <button asp-controller="User" asp-action="SetRoleRequest" asp-route-Id="@Model.Id" type="button" class="btn mb-1 btn-primary btn-lg">Request a role</button>
+                    <button asp-controller="Role" asp-action="SetRoleRequest" asp-route-Id="@Model.Id" method="post" type="submit" class="btn mb-1 btn-primary btn-lg">Request a role</button>
                 </div>
             </div>
         </div>

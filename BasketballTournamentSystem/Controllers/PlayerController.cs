@@ -21,7 +21,7 @@ namespace BasketballTournamentSystem.Controllers
         [Authorize]
         public async Task<IActionResult> AddPlayer()
         {
-            if (!User.IsInRole("Guest") || !User.IsInRole("Admin"))
+            if (!User.IsInRole("Guest") && !User.IsInRole("Administrator"))
             {
                 var user = await userManager.GetUserAsync(User);
                 return View("RequestRole", user);

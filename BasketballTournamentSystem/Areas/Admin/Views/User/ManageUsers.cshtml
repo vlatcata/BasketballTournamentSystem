@@ -1,9 +1,8 @@
 ﻿@using BasketballTournamentSystem.Core.Models.User
 @model IEnumerable<UserListViewModel>
 
-    @{
-    int i = 0;
-    i++;
+@{
+
 }
 
 <div class="row">
@@ -23,17 +22,31 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @{
+                                int i = 0;
+                            }
                             @foreach (var user in Model)
                             {
+                                i++;
                                 <tr>
                                     <th>@i</th>
                                     <td>@user.Email</td>
                                     <td>
-                                        <span class="badge badge-primary px-2">No</span>
-                                        @*                                @if (user.HasRequestedRole)
-                                            {
+
+                                        @if (!user.HasRoleRequest)
+                                        {
+                                            <span class="badge badge-primary px-2">No</span>
+                                        }
+                                        else
+                                        {
                                             <span class="badge badge-primary px-2">Yes</span>
-                                            }*@
+                                        <td>
+                                            <form method="post">
+                                                <button asp-area="" asp-controller="Role" asp-action="AcceptRole" asp-route-Id="@user.Id" method="post" type="submit" class="btn mb-1 btn-success">Accept</button>
+                                                <button asp-area="" asp-controller="Role" asp-action="DeclineRole" asp-route-Id="@user.Id" method="post" type="submit" class="btn mb-1 btn-danger">Decline</button>
+                                            </form>
+                                        </td>
+                                        }
                                     </td>
                                 </tr>
                             }

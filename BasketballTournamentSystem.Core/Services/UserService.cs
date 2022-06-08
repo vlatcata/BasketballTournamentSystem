@@ -1,6 +1,7 @@
 ﻿using BasketballTournamentSystem.Core.Contracts;
 using BasketballTournamentSystem.Core.Models.User;
 using BasketballTournamentSystem.Data;
+using BasketballTournamentSystem.Infrastructure.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BasketballTournamentSystem.Core.Services
@@ -14,25 +15,55 @@ namespace BasketballTournamentSystem.Core.Services
             context = _context;
         }
 
+        public async Task<bool> RemoveRoleRequest(ApplicationUser user)
+        {
+            var result = true;
+
+            try
+            {
+                user.HasRoleRequest = false;
+                await context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        public async Task<ApplicationUser> GetUserById(string id)
+        {
+            var user = await context.Users.Where(x => x.Id == id).FirstOrDefaultAsync();
+            return user;
+        }
+
         public async Task<IEnumerable<UserListViewModel>> GetUsers()
         {
             return await context.Users.Select(x => new UserListViewModel
             {
                 Id = x.Id,
-                Email = x.Email
+                Email = x.Email,
+                HasRoleRequest = x.HasRoleRequest
             })
             .ToListAsync();
         }
 
-        public bool SetRoleRequest(string userId)
+        public bool SetRoleRequest(ApplicationUser user)
         {
             var result = true;
 
-            //var user =  context.Users.Where(x => x.HasRoleRequest);
-
-            if (user == null)
+            if (!user.HasRoleRequest)
             {
-                result = false;
+                try
+                {
+                    user.HasRoleRequest = true;
+                    context.SaveChangesAsync();
+                }
+                catch (Exception)
+                {
+                    result = false;
+                }
             }
 
             return result;
