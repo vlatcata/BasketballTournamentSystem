@@ -63,5 +63,26 @@ namespace BasketballTournamentSystem.Core.Services
 
             return players;
         }
+
+        public async Task<PlayerViewModel> GetPlayer(Guid id)
+        {
+            var player = context.Players
+                .Where(p => p.Id == id)
+                .Select(p => new PlayerViewModel
+            {
+                GamesWon = p.GamesWon,
+                Id = p.Id,
+                ImageUrl = p.ImageUrl,
+                Name = p.Name,
+                Number = p.Number,
+                Scores = p.Scores,
+                Speed = p.Speed,
+                Stamina = p.Stamina
+
+            })
+                .FirstOrDefault();
+
+            return player;
+        }
     }
 }

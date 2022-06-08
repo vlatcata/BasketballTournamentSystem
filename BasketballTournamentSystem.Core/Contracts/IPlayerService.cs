@@ -7,5 +7,6 @@ namespace BasketballTournamentSystem.Core.Contracts
         Task<bool> CreatePlayer(PlayerViewModel model);
 
         Task<List<PlayerViewModel>> GetAllPlayers();
+        Task<PlayerViewModel> GetPlayer(Guid id);
     }
 }

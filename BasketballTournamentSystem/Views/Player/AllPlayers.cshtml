@@ -18,6 +18,9 @@
                                 <p class="card-text">
                                     <small class="text-muted">Number: @player.Number</small>
                                 </p>
+                                <form method="post">
+                                    <button asp-controller="Player" asp-action="PlayerDetails" asp-route-Id="@player.Id" class="btn mb-1 btn-rounded btn-info">Details</button>
+                                </form>
                             </div>
                         </div>
                     </div>

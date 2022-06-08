@@ -49,5 +49,12 @@ namespace BasketballTournamentSystem.Controllers
 
             return View("AllPlayers", players);
         }
+
+        public async Task<IActionResult> PlayerDetails(Guid Id)
+        {
+            var player = await playerService.GetPlayer(Id);
+
+            return View(player);
+        }
     }
 }
