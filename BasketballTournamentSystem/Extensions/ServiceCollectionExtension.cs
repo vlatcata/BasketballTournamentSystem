@@ -9,6 +9,7 @@ namespace BasketballTournamentSystem.Extensions
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPlayerService, PlayerService>();
+            services.AddScoped<ITeamService, TeamService>();
 
 
             return services;

@@ -1,11 +1,26 @@
 ﻿@using BasketballTournamentSystem.Core.Models.Player
 @model cloudscribe.Pagination.Models.PagedResult<PlayerViewModel>
 
+    @{
+    ViewData["Controller"] = "Player";
+    ViewData["Action"] = "GetAllPlayers";
+}
+
+
+<form action="GetAllPlayers" method="get">
+    <div>
+        <p>
+            <input type="text" name="searchString" value="" placeholder="Search player"/>
+            <input type="submit" class="btn mb-1 btn-primary btn-sm" value="Search"/> |
+            <a asp-action="GetAllPlayers">Remove filthers</a>
+        </p>
+    </div>
+</form>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 m-b-30">
             <h4 class="d-inline">These are all the players</h4>
-            <p class="text-muted">with no team ofcourse</p>
+            <p class="text-muted">with no team of course</p>
             <div class="row">
                 @foreach (var player in Model.Data)
                 {
@@ -28,6 +43,6 @@
             </div>
         </div>
 
-        <partial name="_PaginationPartial" />
+        <partial name="_PaginationPartial" view-data="ViewData" model="Model" />
     </div>
 </div>

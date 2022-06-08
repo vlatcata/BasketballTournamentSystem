@@ -45,18 +45,17 @@ namespace BasketballTournamentSystem.Controllers
             return View();
         }
 
-        public async Task<IActionResult> GetAllPlayers2()
-        {
-            var players = await playerService.GetAllPlayers();
-
-            return View("AllPlayers", players);
-        }
-
-        public async Task<IActionResult> GetAllPlayers(int pageNumber = 1, int pageSize = 3)
+        public async Task<IActionResult> GetAllPlayers(string searchString, int pageNumber = 1, int pageSize = 3)
         {
             var excludeRecords = (pageSize * pageNumber) - pageSize;
 
             var players = await playerService.GetAllPlayers();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                players = players.Where(p => p.Name.Contains(searchString, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            }
+
             var playersPerPage = players.Skip(excludeRecords).Take(pageSize).ToList();
 
             var result = new PagedResult<PlayerViewModel>
