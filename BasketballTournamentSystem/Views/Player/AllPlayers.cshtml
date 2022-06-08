@@ -1,5 +1,5 @@
 ﻿@using BasketballTournamentSystem.Core.Models.Player
-@model List<PlayerViewModel>
+@model cloudscribe.Pagination.Models.PagedResult<PlayerViewModel>
 
 <div class="container-fluid">
     <div class="row">
@@ -7,7 +7,7 @@
             <h4 class="d-inline">These are all the players</h4>
             <p class="text-muted">with no team ofcourse</p>
             <div class="row">
-                @foreach (var player in Model)
+                @foreach (var player in Model.Data)
                 {
                     <div class="col-md-6 col-lg-3">
                         <div class="card">
@@ -27,5 +27,7 @@
                 }
             </div>
         </div>
+
+        <partial name="_PaginationPartial" />
     </div>
 </div>

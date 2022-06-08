@@ -29,6 +29,8 @@ builder.Services.AddControllersWithViews();
 // Add services here
 builder.Services.AddApplicationServices();
 
+builder.Services.AddCloudscribePagination();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

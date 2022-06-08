@@ -4,6 +4,8 @@ using BasketballTournamentSystem.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using cloudscribe.Pagination.Models;
+using BasketballTournamentSystem.Infrastructure.Data;
 
 namespace BasketballTournamentSystem.Controllers
 {
@@ -43,11 +45,30 @@ namespace BasketballTournamentSystem.Controllers
             return View();
         }
 
-        public async Task<IActionResult> GetAllPlayers()
+        public async Task<IActionResult> GetAllPlayers2()
         {
             var players = await playerService.GetAllPlayers();
 
             return View("AllPlayers", players);
+        }
+
+        public async Task<IActionResult> GetAllPlayers(int pageNumber = 1, int pageSize = 3)
+        {
+            var excludeRecords = (pageSize * pageNumber) - pageSize;
+
+            var players = await playerService.GetAllPlayers();
+            var playersPerPage = players.Skip(excludeRecords).Take(pageSize).ToList();
+
+            var result = new PagedResult<PlayerViewModel>
+            {
+                Data = playersPerPage,
+                TotalItems = players.Count,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+
+            };
+
+            return View("AllPlayers", result);
         }
 
         public async Task<IActionResult> PlayerDetails(Guid Id)
