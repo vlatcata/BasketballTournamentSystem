@@ -18,6 +18,9 @@ namespace BasketballTournamentSystem.Infrastructure.Data
         public string Name { get; set; }
 
         [Required]
+        public string ImageUrl { get; set; }
+
+        [Required]
         public bool IsInTournament { get; set; }
 
         public List<Player> Players { get; set; }

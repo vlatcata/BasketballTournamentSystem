@@ -1,0 +1,58 @@
+﻿@using BasketballTournamentSystem.Core.Models.Team
+@model cloudscribe.Pagination.Models.PagedResult<TeamViewModel>
+
+    @{
+    ViewData["Controller"] = "Team";
+    ViewData["Action"] = "GetAllTeams";
+}
+
+
+@if (Model.Data.Count > 0)
+{
+    <form action="GetAllPlayers" method="get">
+        <div>
+            <p>
+                <input type="text" name="searchString" value="" placeholder="Search team" />
+                <input type="submit" class="btn mb-1 btn-primary btn-sm" value="Search" /> |
+                <a asp-action="GetAllTeams">Remove filthers</a>
+            </p>
+        </div>
+    </form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 m-b-30">
+                <h4 class="d-inline">These are all the teams</h4>
+                <p class="text-muted">not in a tournament</p>
+                <div class="row">
+                    @foreach (var team in Model.Data)
+                    {
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card">
+                                <img class="img-fluid" src="@team.ImageUrl" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">@team.Name</h5>
+                                    <form method="post">
+                                        <button asp-controller="Team" asp-action="TeamDetails" asp-route-Id="@team.Id" class="btn mb-1 btn-rounded btn-info">Details</button>
+                                        <button asp-controller="Team" asp-action="AddPlayerToTeam" asp-route-Id="@team.Id" class="btn mb-1 btn-rounded btn-info">AddPlayerToTeam</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <partial name="_PaginationPartial" view-data="ViewData" model="Model" />
+        </div>
+    </div>
+}
+else
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 m-b-30">
+                <h4 class="d-inline">There are no teams at the moment</h4>
+            </div>
+        </div>
+    </div>
+}

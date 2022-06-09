@@ -42,7 +42,7 @@ namespace BasketballTournamentSystem.Controllers
 
             await playerService.CreatePlayer(model);
 
-            return View();
+            return RedirectToAction(nameof(GetAllPlayers));
         }
 
         public async Task<IActionResult> GetAllPlayers(string searchString, int pageNumber = 1, int pageSize = 3)

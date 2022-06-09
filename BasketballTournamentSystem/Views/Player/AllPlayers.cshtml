@@ -7,42 +7,55 @@
 }
 
 
-<form action="GetAllPlayers" method="get">
-    <div>
-        <p>
-            <input type="text" name="searchString" value="" placeholder="Search player"/>
-            <input type="submit" class="btn mb-1 btn-primary btn-sm" value="Search"/> |
-            <a asp-action="GetAllPlayers">Remove filthers</a>
-        </p>
-    </div>
-</form>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 m-b-30">
-            <h4 class="d-inline">These are all the players</h4>
-            <p class="text-muted">with no team of course</p>
-            <div class="row">
-                @foreach (var player in Model.Data)
-                {
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card">
-                            <img class="img-fluid" src="@player.ImageUrl" alt="">
-                            <div class="card-body">
-                                <h5 class="card-title">@player.Name</h5>
-                                <p class="card-text">Speed: @player.Speed Stamina: @player.Stamina Scores: @player.Scores</p>
-                                <p class="card-text">
-                                    <small class="text-muted">Number: @player.Number</small>
-                                </p>
-                                <form method="post">
-                                    <button asp-controller="Player" asp-action="PlayerDetails" asp-route-Id="@player.Id" class="btn mb-1 btn-rounded btn-info">Details</button>
-                                </form>
+@if (Model.Data.Count > 0)
+{
+    <form action="GetAllPlayers" method="get">
+        <div>
+            <p>
+                <input type="text" name="searchString" value="" placeholder="Search player" />
+                <input type="submit" class="btn mb-1 btn-primary btn-sm" value="Search" /> |
+                <a asp-action="GetAllPlayers">Remove filthers</a>
+            </p>
+        </div>
+    </form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 m-b-30">
+                <h4 class="d-inline">These are all the players</h4>
+                <p class="text-muted">with no team of course</p>
+                <div class="row">
+                    @foreach (var player in Model.Data)
+                    {
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card">
+                                <img class="img-fluid" src="@player.ImageUrl" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">@player.Name</h5>
+                                    <p class="card-text">Speed: @player.Speed Stamina: @player.Stamina Scores: @player.Scores</p>
+                                    <p class="card-text">
+                                        <small class="text-muted">Number: @player.Number</small>
+                                    </p>
+                                    <form method="post">
+                                        <button asp-controller="Player" asp-action="PlayerDetails" asp-route-Id="@player.Id" class="btn mb-1 btn-rounded btn-info">Details</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                }
+                    }
+                </div>
+            </div>
+
+            <partial name="_PaginationPartial" view-data="ViewData" model="Model" />
+        </div>
+    </div>
+}
+else
+{
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 m-b-30">
+                <h4 class="d-inline">There are no players at the moment</h4>
             </div>
         </div>
-
-        <partial name="_PaginationPartial" view-data="ViewData" model="Model" />
     </div>
-</div>
+}

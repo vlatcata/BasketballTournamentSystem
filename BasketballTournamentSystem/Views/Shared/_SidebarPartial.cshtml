@@ -35,8 +35,8 @@
                 <i class="icon-envelope menu-icon"></i> <span class="nav-text">Teams</span>
             </a>
             <ul aria-expanded="false">
-                <li><a href="./email-inbox.html">View all teams</a></li>
-                <li><a href="./email-read.html">Add a team</a></li>
+                <li><a asp-area="" asp-controller="Team" asp-action="GetAllTeams">View all teams</a></li>
+                <li><a asp-area="" asp-controller="Team" asp-action="AddTeam">Add a team</a></li>
             </ul>
         </li>
         <li class="nav-label">Tournaments</li>
