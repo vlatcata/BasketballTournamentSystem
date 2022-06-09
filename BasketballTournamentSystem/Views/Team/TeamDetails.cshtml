@@ -14,6 +14,31 @@
                     <label asp-for="ImageUrl" class="form-control input-flat">@Model.ImageUrl</label>
                     <img asp-for="ImageUrl" src="@Model.ImageUrl" style="width:200px;" />
                 </div>
+                @foreach (var player in Model.Players)
+                {
+                    <div class="form-group">
+                        <label asp-for="@player.Name" class="form-control input-flat">@player.Name</label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.ImageUrl" class="form-control input-flat">@player.ImageUrl</label>
+                        <img asp-for="@player.ImageUrl" src="@player.ImageUrl" style="width:200px;" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.Stamina" class="form-control input-flat">@player.Stamina</label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.Speed" class="form-control input-flat">@player.Speed</label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.Scores" class="form-control input-flat">@player.Scores</label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.GamesWon" class="form-control input-flat">@player.GamesWon</label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.Number" class="form-control input-flat">@player.Number</label>
+                    </div>
+                }
                 <button asp-controller="Team" asp-action="GetAllTeams" class="btn mb-1 btn-danger">Close</button>
             </form>
         </div>

@@ -48,7 +48,7 @@ namespace BasketballTournamentSystem.Core.Services
 
         public Task<List<PlayerViewModel>> GetAllPlayers()
         {
-            var players = context.Players.Select(p => new PlayerViewModel
+            var players = context.Players.Where(p => p.IsInTeam == false).Select(p => new PlayerViewModel
             {
                 GamesWon = p.GamesWon,
                 Id = p.Id,

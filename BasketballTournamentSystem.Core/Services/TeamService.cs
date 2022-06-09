@@ -1,4 +1,5 @@
 ﻿using BasketballTournamentSystem.Core.Contracts;
+using BasketballTournamentSystem.Core.Models.Player;
 using BasketballTournamentSystem.Core.Models.Team;
 using BasketballTournamentSystem.Data;
 using BasketballTournamentSystem.Infrastructure.Data;
@@ -18,6 +19,28 @@ namespace BasketballTournamentSystem.Core.Services
         public TeamService(ApplicationDbContext _context)
         {
             context = _context;
+        }
+
+        public async Task AddPlayerToTeam(Guid id)
+        {
+            var team = context.Teams.Where(t => t.Id == id).FirstOrDefault();
+
+            // Gets a random player form the list of players
+            var playerCount = context.Players.Count();
+            var rnd = new Random();
+            int randomCounter = rnd.Next(0, playerCount + 1);
+
+            var player = context.Players.Select(p => p).Skip(randomCounter).FirstOrDefault();
+
+            try
+            {
+                player.IsInTeam = true;
+                team.Players.Add(player);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public async Task<bool> CreateTeam(TeamViewModel model)
@@ -64,7 +87,20 @@ namespace BasketballTournamentSystem.Core.Services
             {
                 Id = t.Id,
                 Name = t.Name,
-                ImageUrl = t.ImageUrl
+                ImageUrl = t.ImageUrl,
+                Players = t.Players.Select(p => new PlayerViewModel()
+                {
+                    Id = p.Id,
+                    GamesWon = p.GamesWon,
+                    ImageUrl = p.ImageUrl,
+                    IsInTeam = true,
+                    Name = p.Name,
+                    Number = p.Number,
+                    Scores = p.Scores,
+                    Speed = p.Speed,
+                    Stamina = p.Stamina
+                })
+                .ToList()
             })
                 .FirstOrDefaultAsync();
 

@@ -73,11 +73,18 @@ namespace BasketballTournamentSystem.Controllers
             return View(team);
         }
 
-        public async Task<IActionResult> AddPlayerToTeam()
+        public async Task<IActionResult> AddPlayerToTeam(Guid id)
         {
+            var team = await teamService.GetTeamDetails(id);
 
+            if (team.Players.Count == 5)
+            {
+                return Redirect("/Team/PlayerLimitReached");
+            }
 
-            return View();
+            await teamService.AddPlayerToTeam(id);
+
+            return RedirectToAction(nameof(TeamDetails), id);
         }
     }
 }
