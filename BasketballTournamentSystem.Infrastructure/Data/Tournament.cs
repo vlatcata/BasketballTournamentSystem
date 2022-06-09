@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BasketballTournamentSystem.Infrastructure.Data
 {
@@ -22,10 +17,14 @@ namespace BasketballTournamentSystem.Infrastructure.Data
         [StringLength(50)]
         public string Result { get; set; }
 
+        public int TeamOneScore { get; set; }
+
         [Required]
         [ForeignKey(nameof(TeamOneId))]
         public Team TeamOne { get; set; }
         public Guid TeamOneId { get; set; }
+
+        public int TeamTwoScore { get; set; }
 
         [Required]
         [ForeignKey(nameof(TeamTwoId))]

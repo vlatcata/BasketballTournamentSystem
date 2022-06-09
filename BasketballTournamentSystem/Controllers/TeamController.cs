@@ -4,6 +4,7 @@ using BasketballTournamentSystem.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using cloudscribe.Pagination.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BasketballTournamentSystem.Controllers
 {
@@ -18,6 +19,7 @@ namespace BasketballTournamentSystem.Controllers
             userManager = _userManager;
         }
 
+        [Authorize]
         public async Task<IActionResult> AddTeam()
         {
             if (!User.IsInRole("Guest") && !User.IsInRole("Administrator"))
@@ -29,6 +31,7 @@ namespace BasketballTournamentSystem.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddTeam(TeamViewModel model)
         {
             if (!ModelState.IsValid)
@@ -73,6 +76,7 @@ namespace BasketballTournamentSystem.Controllers
             return View(team);
         }
 
+        [Authorize]
         public async Task<IActionResult> AddPlayerToTeam(Guid id)
         {
             var team = await teamService.GetTeamDetails(id);
@@ -87,6 +91,7 @@ namespace BasketballTournamentSystem.Controllers
             return RedirectToAction(nameof(TeamDetails), id);
         }
 
+        [Authorize]
         public async Task<IActionResult> RemoveTeam(Guid id)
         {
             var result = await teamService.RemoveTeam(id);

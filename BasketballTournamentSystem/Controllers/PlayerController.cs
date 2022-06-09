@@ -77,6 +77,7 @@ namespace BasketballTournamentSystem.Controllers
             return View(player);
         }
 
+        [Authorize]
         public async Task<IActionResult> RemovePlayer(Guid Id)
         {
             var result = await playerService.RemovePlayer(Id);
