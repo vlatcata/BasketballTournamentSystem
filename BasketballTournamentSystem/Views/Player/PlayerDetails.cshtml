@@ -8,25 +8,30 @@
         <div class="basic-form">
             <form method="post">
                 <div class="form-group">
+                    <label asp-for="Name">Name</label>
                     <label asp-for="Name" class="form-control input-flat">@Model.Name</label>
                 </div>
                 <div class="form-group">
-                    <label asp-for="ImageUrl" class="form-control input-flat">@Model.ImageUrl</label>
                     <img asp-for="ImageUrl" src="@Model.ImageUrl" style="width:200px;" />
                 </div>
                 <div class="form-group">
+                    <label asp-for="Stamina">Stamina</label>
                     <label asp-for="Stamina" class="form-control input-flat">@Model.Stamina</label>
                 </div>
                 <div class="form-group">
+                    <label asp-for="Speed">Speed</label>
                     <label asp-for="Speed" class="form-control input-flat">@Model.Speed</label>
                 </div>
                 <div class="form-group">
+                    <label asp-for="Scores">Scores</label>
                     <label asp-for="Scores" class="form-control input-flat">@Model.Scores</label>
                 </div>
                 <div class="form-group">
+                    <label asp-for="GamesWon">GamesWon</label>
                     <label asp-for="GamesWon" class="form-control input-flat">@Model.GamesWon</label>
                 </div>
                 <div class="form-group">
+                    <label asp-for="Number">Number</label>
                     <label asp-for="Number" class="form-control input-flat">@Model.Number</label>
                 </div>
                 <button asp-controller="Player" asp-action="GetAllPlayers" class="btn mb-1 btn-danger">Close</button>

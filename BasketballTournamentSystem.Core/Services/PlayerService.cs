@@ -84,5 +84,24 @@ namespace BasketballTournamentSystem.Core.Services
 
             return player;
         }
+
+        public async Task<bool> RemovePlayer(Guid id)
+        {
+            var result = true;
+
+            var player = await context.Players.Where(p => p.Id == id).FirstOrDefaultAsync();
+
+            try
+            {
+                context.Players.Remove(player);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+
+            return result;
+        }
     }
 }

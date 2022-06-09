@@ -37,6 +37,7 @@
                                     </p>
                                     <form method="post">
                                         <button asp-controller="Player" asp-action="PlayerDetails" asp-route-Id="@player.Id" class="btn mb-1 btn-rounded btn-info">Details</button>
+                                        <button asp-controller="Player" asp-action="RemovePlayer" asp-route-Id="@player.Id" class="btn mb-1 btn-rounded btn-danger">Remove</button>
                                     </form>
                                 </div>
                             </div>

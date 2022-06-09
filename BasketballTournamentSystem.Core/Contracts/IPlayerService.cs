@@ -8,5 +8,6 @@ namespace BasketballTournamentSystem.Core.Contracts
 
         Task<List<PlayerViewModel>> GetAllPlayers();
         Task<PlayerViewModel> GetPlayer(Guid id);
+        Task<bool> RemovePlayer(Guid id);
     }
 }
