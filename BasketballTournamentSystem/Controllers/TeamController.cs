@@ -79,7 +79,7 @@ namespace BasketballTournamentSystem.Controllers
 
             if (team.Players.Count == 5)
             {
-                return Redirect("/Team/PlayerLimitReached");
+                return Redirect("/Shared/PlayerLimitReached");
             }
 
             var result = await teamService.AddPlayerToTeam(id);

@@ -28,7 +28,7 @@ namespace BasketballTournamentSystem.Core.Services
             var team = context.Teams.Where(t => t.Id == id).FirstOrDefault();
 
             // Gets a random player form the list of players
-            var playerCount = context.Players.Count();
+            var playerCount = context.Players.Where(p => p.IsInTeam == false).Count();
             var rnd = new Random();
             int randomCounter = rnd.Next(0, playerCount + 1);
 
@@ -79,7 +79,20 @@ namespace BasketballTournamentSystem.Core.Services
             {
                 Id = t.Id,
                 ImageUrl = t.ImageUrl,
-                Name = t.Name
+                Name = t.Name,
+                Players = t.Players.Select(p => new PlayerViewModel()
+                {
+                    Id = p.Id,
+                    IsInTeam = p.IsInTeam,
+                    GamesWon = p.GamesWon,
+                    ImageUrl = p.ImageUrl,
+                    Name = p.Name,
+                    Number = p.Number,
+                    Scores = p.Scores,
+                    Speed = p.Speed,
+                    Stamina = p.Stamina
+                })
+                .ToList()
             })
                 .ToListAsync();
 

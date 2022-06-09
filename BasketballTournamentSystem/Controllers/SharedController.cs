@@ -23,5 +23,10 @@ namespace BasketballTournamentSystem.Controllers
         {
             return View();
         }
+
+        public IActionResult PlayerLimitReached()
+        {
+            return View();
+        }
     }
 }
