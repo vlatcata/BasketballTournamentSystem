@@ -82,9 +82,16 @@ namespace BasketballTournamentSystem.Controllers
                 return Redirect("/Team/PlayerLimitReached");
             }
 
-            await teamService.AddPlayerToTeam(id);
+            var result = await teamService.AddPlayerToTeam(id);
 
             return RedirectToAction(nameof(TeamDetails), id);
+        }
+
+        public async Task<IActionResult> RemoveTeam(Guid id)
+        {
+            var result = await teamService.RemoveTeam(id);
+
+            return RedirectToAction(nameof(GetAllTeams));
         }
     }
 }

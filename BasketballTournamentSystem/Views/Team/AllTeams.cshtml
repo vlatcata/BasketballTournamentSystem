@@ -33,7 +33,8 @@
                                     <h5 class="card-title">@team.Name</h5>
                                     <form method="post">
                                         <button asp-controller="Team" asp-action="TeamDetails" asp-route-Id="@team.Id" class="btn mb-1 btn-rounded btn-info">Details</button>
-                                        <button asp-controller="Team" asp-action="AddPlayerToTeam" asp-route-Id="@team.Id" class="btn mb-1 btn-rounded btn-info">AddPlayerToTeam</button>
+                                        <button asp-controller="Team" asp-action="AddPlayerToTeam" asp-route-Id="@team.Id" class="btn mb-1 btn-rounded btn-info">Add Player To Team</button>
+                                        <button asp-controller="Team" asp-action="RemoveTeam" asp-route-Id="@team.Id" class="btn mb-1 btn-rounded btn-danger">Remove Team</button>
                                     </form>
                                 </div>
                             </div>

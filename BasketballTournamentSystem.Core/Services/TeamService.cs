@@ -21,8 +21,10 @@ namespace BasketballTournamentSystem.Core.Services
             context = _context;
         }
 
-        public async Task AddPlayerToTeam(Guid id)
+        public async Task<bool> AddPlayerToTeam(Guid id)
         {
+            var result = true;
+
             var team = context.Teams.Where(t => t.Id == id).FirstOrDefault();
 
             // Gets a random player form the list of players
@@ -40,7 +42,10 @@ namespace BasketballTournamentSystem.Core.Services
             }
             catch (Exception)
             {
+                result = false;
             }
+
+            return result;
         }
 
         public async Task<bool> CreateTeam(TeamViewModel model)
@@ -105,6 +110,32 @@ namespace BasketballTournamentSystem.Core.Services
                 .FirstOrDefaultAsync();
 
             return team;
+        }
+
+        public async Task<bool> RemoveTeam(Guid id)
+        {
+            var result = true;
+
+            var team = context.Teams.Where(t => t.Id == id)
+                .Include(t => t.Players)
+                .FirstOrDefault();
+
+            foreach (var player in team.Players)
+            {
+                player.IsInTeam = false;
+            }
+
+            try
+            {
+                context.Teams.Remove(team);
+                await context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+
+            return result;
         }
     }
 }
