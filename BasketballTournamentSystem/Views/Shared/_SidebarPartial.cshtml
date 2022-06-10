@@ -45,8 +45,8 @@
                 <i class="icon-grid menu-icon"></i><span class="nav-text">Tournaments</span>
             </a>
             <ul aria-expanded="false">
-                <li><a href="./ui-accordion.html">View all tournaments</a></li>
-                <li><a href="./ui-alert.html">Create new tournament</a></li>
+                <li><a asp-area="" asp-controller="Tournament" asp-action="GetAllTournaments">View all tournaments</a></li>
+                <li><a asp-area="" asp-controller="Tournament" asp-action="AddTournament">Create new tournament</a></li>
             </ul>
         </li>
     </ul>

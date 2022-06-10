@@ -1,0 +1,61 @@
+﻿@using BasketballTournamentSystem.Core.Models.Tournament
+@model cloudscribe.Pagination.Models.PagedResult<TournamentViewModel>
+
+    @{
+    ViewData["Controller"] = "Tournaments";
+    ViewData["Action"] = "GetAllTournaments";
+}
+
+
+@if (Model.Data.Count > 0)
+{
+    <form action="GetAllPlayers" method="get">
+        <div>
+            <p>
+                <input type="text" name="searchString" value="" placeholder="Search team" />
+                <input type="submit" class="btn mb-1 btn-primary btn-sm" value="Search" /> |
+                <a asp-action="GetAllTeams">Remove filthers</a>
+            </p>
+        </div>
+    </form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 m-b-30">
+                <h4 class="d-inline">These are all the tournaments</h4>
+                <div class="row">
+                    @foreach (var tournament in Model.Data)
+                    {
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card">
+                                <img class="img-fluid" src="~/img/tournaments.jpg" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title">@tournament.Name</h5>
+                                    <form method="post">
+                                        <label>@tournament.TeamOne.Name</label>
+                                        <label> VS </label>
+                                        <label>@tournament.TeamTwo.Name</label>
+                                        <button asp-controller="Tournament" asp-action="TournamentDetails" asp-route-Id="@tournament.Id" class="btn mb-1 btn-rounded btn-info">Details</button>
+                                        <button asp-controller="Tournament" asp-action="AddPlayerToTeam" asp-route-Id="@tournament.Id" class="btn mb-1 btn-rounded btn-info">Add random player</button>
+                                        <button asp-controller="Tournament" asp-action="RemoveTournament" asp-route-Id="@tournament.Id" class="btn mb-1 btn-rounded btn-danger">Remove Tournament</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <partial name="_PaginationPartial" view-data="ViewData" model="Model" />
+        </div>
+    </div>
+}
+else
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 m-b-30">
+                <h4 class="d-inline">There are no tournaments at the moment</h4>
+            </div>
+        </div>
+    </div>
+}

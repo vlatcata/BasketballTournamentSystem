@@ -11,12 +11,14 @@ namespace BasketballTournamentSystem.Controllers
     public class TeamController : Controller
     {
         private readonly ITeamService teamService;
+        private readonly IPlayerService playerService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public TeamController(ITeamService _teamService, UserManager<ApplicationUser> _userManager)
+        public TeamController(ITeamService _teamService, UserManager<ApplicationUser> _userManager, IPlayerService _playerService)
         {
             teamService = _teamService;
             userManager = _userManager;
+            playerService = _playerService;
         }
 
         [Authorize]
@@ -69,32 +71,39 @@ namespace BasketballTournamentSystem.Controllers
             return View("AllTeams", result);
         }
 
-        public async Task<IActionResult> TeamDetails(Guid id)
+        public async Task<IActionResult> TeamDetails(Guid Id)
         {
-            var team = await teamService.GetTeamDetails(id);
+            
+            var team = await teamService.GetTeamDetails(Id);
 
             return View(team);
         }
 
         [Authorize]
-        public async Task<IActionResult> AddPlayerToTeam(Guid id)
+        public async Task<IActionResult> AddPlayerToTeam(Guid Id)
         {
-            var team = await teamService.GetTeamDetails(id);
+            var team = await teamService.GetTeamDetails(Id);
+
+            var players = await playerService.GetAllPlayers();
+            if (players.Count <= 0 || players == null)
+            {
+                return Redirect("/Shared/NoPlayers");
+            }
 
             if (team.Players.Count == 5)
             {
                 return Redirect("/Shared/PlayerLimitReached");
             }
 
-            var result = await teamService.AddPlayerToTeam(id);
+            var result = await teamService.AddPlayerToTeam(Id);
 
-            return RedirectToAction(nameof(TeamDetails), id);
+            return RedirectToAction(nameof(GetAllTeams));
         }
 
         [Authorize]
-        public async Task<IActionResult> RemoveTeam(Guid id)
+        public async Task<IActionResult> RemoveTeam(Guid Id)
         {
-            var result = await teamService.RemoveTeam(id);
+            var result = await teamService.RemoveTeam(Id);
 
             return RedirectToAction(nameof(GetAllTeams));
         }

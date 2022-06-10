@@ -1,0 +1,32 @@
+﻿@using BasketballTournamentSystem.Core.Models.Tournament
+@model TournamentViewModel
+
+<form method="post" novalidate="novalidate" class="form-valide">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="card">
+        <div class="card-body">
+            <div class="form-validation">
+                <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" for="val-username">
+                        Name <span class="text-danger">*</span>
+                    </label>
+                    <div class="col-lg-6">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <input asp-for="Name" type="text" name="Name" class="form-control" placeholder="Enter tournament name..">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-8 ml-auto">
+                        <button asp-controller="Tournament" asp-action="AddTournament" type="submit" method="post" class="btn btn-primary">Generate a tournament</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}
+
+

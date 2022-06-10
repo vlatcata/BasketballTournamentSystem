@@ -4,6 +4,10 @@ namespace BasketballTournamentSystem.Core.Models.Tournament
 {
     public class TournamentViewModel
     {
+        public Guid Id { get; set; }
+
+        public string Name { get; set; }
+
         public string Result { get; set; }
 
         public int TeamOneScore { get; set; }

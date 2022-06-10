@@ -14,21 +14,25 @@ namespace BasketballTournamentSystem.Infrastructure.Data
         public Guid Id { get; set; }
 
         [Required]
+        [StringLength(40)]
+        public string Name { get; set; }
+
+        [Required]
         [StringLength(50)]
         public string Result { get; set; }
 
         public int TeamOneScore { get; set; }
-
-        [Required]
-        [ForeignKey(nameof(TeamOneId))]
-        public Team TeamOne { get; set; }
-        public Guid TeamOneId { get; set; }
-
         public int TeamTwoScore { get; set; }
 
         [Required]
+        [ForeignKey(nameof(TeamOneId))]
+        public Team? TeamOne { get; set; }
+        public Guid TeamOneId { get; set; }
+
+
+        [Required]
         [ForeignKey(nameof(TeamTwoId))]
-        public Team TeamTwo { get; set; }
+        public Team? TeamTwo { get; set; }
         public Guid TeamTwoId { get; set; }
     }
 }
