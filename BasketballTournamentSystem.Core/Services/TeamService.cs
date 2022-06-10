@@ -25,14 +25,19 @@ namespace BasketballTournamentSystem.Core.Services
         {
             var result = true;
 
-            var team = context.Teams.Where(t => t.Id == id).FirstOrDefault();
+            var team = context.Teams.Where(t => t.Id == id).Include(t => t.Players).FirstOrDefault();
 
             // Gets a random player form the list of players
             var playerCount = context.Players.Where(p => p.IsInTeam == false).Count();
             var rnd = new Random();
             int randomCounter = rnd.Next(0, playerCount + 1);
 
-            var player = context.Players.Select(p => p).Skip(randomCounter).FirstOrDefault();
+            var player = context.Players.Where(p => p.IsInTeam == false).Skip(randomCounter).FirstOrDefault();
+
+            if (playerCount == 1)
+            {
+                player = context.Players.Where(p => p.IsInTeam == false).FirstOrDefault();
+            }
 
             try
             {
@@ -101,7 +106,7 @@ namespace BasketballTournamentSystem.Core.Services
 
         public async Task<TeamViewModel> GetTeamDetails(Guid id)
         {
-            var team = await context.Teams.Select(t => new TeamViewModel()
+            var team = await context.Teams.Where(t => t.Id == id).Select(t => new TeamViewModel()
             {
                 Id = t.Id,
                 Name = t.Name,
