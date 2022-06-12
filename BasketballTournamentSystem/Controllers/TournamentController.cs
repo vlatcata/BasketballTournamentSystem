@@ -62,6 +62,7 @@ namespace BasketballTournamentSystem.Controllers
             return View(result);
         }
 
+        [Authorize]
         public async Task<IActionResult> RemoveTournament(Guid Id)
         {
             var result = await tournamentService.RemoveTournament(Id);
@@ -69,6 +70,7 @@ namespace BasketballTournamentSystem.Controllers
             return RedirectToAction(nameof(GetAllTournaments));
         }
 
+        [Authorize]
         public async Task<IActionResult> AddOnePoint(Guid Id, Guid tId)
         {
             var result = await tournamentService.AddOnePoint(Id, tId);
@@ -76,6 +78,7 @@ namespace BasketballTournamentSystem.Controllers
             return RedirectToAction(nameof(GetAllTournaments));
         }
 
+        [Authorize]
         public async Task<IActionResult> AddThreePoints(Guid Id, Guid tId)
         {
             var result = await tournamentService.AddThreePoints(Id, tId);
