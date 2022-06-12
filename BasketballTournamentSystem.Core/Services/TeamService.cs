@@ -30,7 +30,7 @@ namespace BasketballTournamentSystem.Core.Services
             // Gets a random player form the list of players
             var playerCount = context.Players.Where(p => p.IsInTeam == false).Count();
             var rnd = new Random();
-            int randomCounter = rnd.Next(0, playerCount + 1);
+            int randomCounter = rnd.Next(0, playerCount - 1);
 
             var player = context.Players.Where(p => p.IsInTeam == false).Skip(randomCounter).FirstOrDefault();
 

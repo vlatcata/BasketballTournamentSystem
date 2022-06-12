@@ -31,9 +31,11 @@
                                 <img class="img-fluid" src="@player.ImageUrl" alt="" style="height: 400px;">
                                 <div class="card-body">
                                     <h5 class="card-title">@player.Name</h5>
-                                    <p class="card-text">Speed: @player.Speed Stamina: @player.Stamina Scores: @player.Scores</p>
+                                    <span class="badge badge-info">Speed: @player.Speed</span>
+                                    <span class="badge badge-info">Stamina: @player.Stamina</span>
+                                    <span class="badge badge-info">Scores: @player.Scores</span>
                                     <p class="card-text">
-                                        <small class="text-muted">Number: @player.Number</small>
+                                        <span class="badge badge-warning">Number: @player.Number</span>
                                     </p>
                                     <form method="post">
                                         <button asp-controller="Player" asp-action="PlayerDetails" asp-route-Id="@player.Id" class="btn mb-1 btn-rounded btn-info">Details</button>
@@ -52,7 +54,7 @@
 }
 else
 {
-        <div class="container-fluid">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12 m-b-30">
                 <h4 class="d-inline">There are no players at the moment</h4>
