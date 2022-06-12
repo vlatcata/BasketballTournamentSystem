@@ -182,11 +182,11 @@ namespace BasketballTournamentSystem.Core.Services
             {
                 if (tournament.TeamOneScore >= 31)
                 {
-                    tournament.Result = $"{tournament.TeamOne.Name} wins!";
+                    tournament.Result = $"{tournament.TeamOne.Name} win!";
                 }
                 else if (tournament.TeamTwoScore >= 31)
                 {
-                    tournament.Result = $"{tournament.TeamTwo.Name} wins!";
+                    tournament.Result = $"{tournament.TeamTwo.Name} win!";
                 }
             }
 

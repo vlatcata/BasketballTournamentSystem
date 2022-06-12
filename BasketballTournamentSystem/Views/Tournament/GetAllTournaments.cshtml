@@ -12,7 +12,7 @@
     <form action="GetAllPlayers" method="get">
         <div>
             <p>
-                <input type="text" name="searchString" value="" placeholder="Search team" />
+                <input type="text" name="searchString" value="" placeholder="Search tournament" />
                 <input type="submit" class="btn mb-1 btn-primary btn-sm" value="Search" /> |
                 <a asp-action="GetAllTeams">Remove filthers</a>
             </p>
@@ -29,9 +29,13 @@
                             <div class="card">
                                 <img class="img-fluid" src="~/img/tournaments.jpg" alt="">
                                 <div class="card-body">
-                                    @if (tournament.Result.Contains("wins"))
+                                    @if (tournament.Result.Contains("win"))
                                     {
-                                        <div class="badge badge-success">@tournament.Result</div>
+                                        <div class="badge badge-success" style="font-size: large;">@tournament.Result</div>
+                                        <div>
+                                            <button asp-controller="Tournament" asp-action="TournamentDetails" asp-route-Id="@tournament.Id" class="btn mb-1 btn-rounded btn-info">Details</button>
+                                            <button asp-controller="Tournament" asp-action="RemoveTournament" asp-route-Id="@tournament.Id" class="btn mb-1 btn-rounded btn-danger">Remove Tournament</button>
+                                        </div>
                                     }
                                     else
                                     {

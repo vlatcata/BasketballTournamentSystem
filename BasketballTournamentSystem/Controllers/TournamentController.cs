@@ -55,7 +55,8 @@ namespace BasketballTournamentSystem.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                tournaments = tournaments.Where(p => p.Name.Contains(searchString, StringComparison.InvariantCultureIgnoreCase)).ToList();
+                tournaments = tournaments.Where(p => p.TeamOne.Name.Contains(searchString, StringComparison.InvariantCultureIgnoreCase) 
+                || p.TeamTwo.Name.Contains(searchString, StringComparison.InvariantCultureIgnoreCase)).ToList();
             }
 
             var tournamentsPerPage = tournaments.Skip(excludeRecords).Take(pageSize).ToList();
