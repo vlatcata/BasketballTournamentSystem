@@ -31,11 +31,14 @@
                                 <div class="card-body">
                                     @if (tournament.Result.Contains("win"))
                                     {
-                                        <div class="badge badge-success" style="font-size: large;">@tournament.Result</div>
-                                        <div>
-                                            <button asp-controller="Tournament" asp-action="TournamentDetails" asp-route-Id="@tournament.Id" class="btn mb-1 btn-rounded btn-info">Details</button>
-                                            <button asp-controller="Tournament" asp-action="RemoveTournament" asp-route-Id="@tournament.Id" class="btn mb-1 btn-rounded btn-danger">Remove Tournament</button>
-                                        </div>
+                                        <h4 class="alert alert-warning">@tournament.TeamOne.Name VS @tournament.TeamTwo.Name</h4>
+                                        <h4 class="alert alert-info">@tournament.Result</h4>
+                                        <form method="post">
+                                            <div>
+                                                <button asp-controller="Tournament" asp-action="TournamentDetails" asp-route-Id="@tournament.Id" class="btn mb-1 btn-rounded btn-info">Details</button>
+                                                <button asp-controller="Tournament" asp-action="RemoveTournament" asp-route-Id="@tournament.Id" class="btn mb-1 btn-rounded btn-danger">Remove Tournament</button>
+                                            </div>
+                                        </form>
                                     }
                                     else
                                     {
