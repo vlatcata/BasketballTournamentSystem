@@ -1,0 +1,116 @@
+﻿@using BasketballTournamentSystem.Core.Models.Tournament
+@model TournamentViewModel
+
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Tournament Details</h4>
+        <div class="basic-form">
+            <form method="post">
+                <div class="form-group">
+                    <label>@Model.TeamOne.Name VS @Model.TeamTwo.Name</label>
+                </div>
+                <div class="form-group">
+                    <img asp-for="ImageUrl" src="/img/tournaments.jpg" style="width:200px;" />
+                </div>
+
+                <br />
+
+                <br />
+                <label>@Model.TeamOne.Name</label>
+                <div class="form-group">
+                    <img asp-for="@Model.TeamOne.ImageUrl" src="@Model.TeamOne.ImageUrl" style="width:300px;" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.TeamOne.Name">Team 1: Name</label>
+                    <label asp-for="@Model.TeamOne.Name" class="form-control input-flat">@Model.TeamOne.Name</label>
+                </div>
+                <br />
+
+                @{int i = 0; int x = 0;}
+                @foreach (var player in Model.TeamOne.Players)
+                {
+                    i++;
+                    <label>Player @i</label>
+                    <div class="form-group">
+                        <label asp-for="@player.Name">Name</label>
+                        <label asp-for="@player.Name" class="form-control input-flat">@player.Name</label>
+                    </div>
+                    <div class="form-group">
+                        <img asp-for="@player.ImageUrl" src="@player.ImageUrl" style="width:200px;" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.Number">Number</label>
+                        <label asp-for="@player.Number" class="form-control input-flat">@player.Number</label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.Stamina">Stamina</label>
+                        <label asp-for="@player.Stamina" class="form-control input-flat">@player.Stamina</label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.Scores">Scores</label>
+                        <label asp-for="@player.Scores" class="form-control input-flat">@player.Scores</label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.Speed">Speed</label>
+                        <label asp-for="@player.Speed" class="form-control input-flat">@player.Speed</label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.GamesWon">GamesWon</label>
+                        <label asp-for="@player.GamesWon" class="form-control input-flat">@player.GamesWon</label>
+                    </div>
+                }
+
+                <br />
+                <label>@Model.TeamTwo.Name</label>
+                <div class="form-group">
+                    <img asp-for="@Model.TeamTwo.ImageUrl" src="@Model.TeamTwo.ImageUrl" style="width:300px;" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.TeamOne.Name">Team 2: Name</label>
+                    <label asp-for="@Model.TeamOne.Name" class="form-control input-flat">@Model.TeamOne.Name</label>
+                </div>
+                <br />
+
+                @foreach (var player in Model.TeamTwo.Players)
+                {
+                    x++;
+                    <label>Player @x</label>
+                    <div class="form-group">
+                        <label asp-for="@player.Name">Name</label>
+                        <label asp-for="@player.Name" class="form-control input-flat">@player.Name</label>
+                    </div>
+                    <div class="form-group">
+                        <img asp-for="@player.ImageUrl" src="@player.ImageUrl" style="width:200px;" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.Number">Number</label>
+                        <label asp-for="@player.Number" class="form-control input-flat">@player.Number</label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.Stamina">Stamina</label>
+                        <label asp-for="@player.Stamina" class="form-control input-flat">@player.Stamina</label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.Scores">Scores</label>
+                        <label asp-for="@player.Scores" class="form-control input-flat">@player.Scores</label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.Speed">Speed</label>
+                        <label asp-for="@player.Speed" class="form-control input-flat">@player.Speed</label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@player.GamesWon">GamesWon</label>
+                        <label asp-for="@player.GamesWon" class="form-control input-flat">@player.GamesWon</label>
+                    </div>
+                }
+
+                <button asp-controller="Tournaments" asp-action="GetAllTournaments" class="btn mb-1 btn-danger">Close</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

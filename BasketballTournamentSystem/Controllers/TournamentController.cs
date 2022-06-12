@@ -68,5 +68,26 @@ namespace BasketballTournamentSystem.Controllers
 
             return RedirectToAction(nameof(GetAllTournaments));
         }
+
+        public async Task<IActionResult> AddOnePoint(Guid Id, Guid tId)
+        {
+            var result = await tournamentService.AddOnePoint(Id, tId);
+
+            return RedirectToAction(nameof(GetAllTournaments));
+        }
+
+        public async Task<IActionResult> AddThreePoints(Guid Id, Guid tId)
+        {
+            var result = await tournamentService.AddThreePoints(Id, tId);
+
+            return RedirectToAction(nameof(GetAllTournaments));
+        }
+
+        public async Task<IActionResult> TournamentDetails(Guid Id)
+        {
+            var tournament = await tournamentService.DetailsTournament(Id);
+
+            return View(tournament);
+        }
     }
 }
