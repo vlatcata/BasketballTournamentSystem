@@ -47,7 +47,7 @@ namespace BasketballTournamentSystem.Controllers
             return RedirectToAction(nameof(GetAllTournaments));
         }
 
-        public async Task<IActionResult> GetAllTournaments(string searchString, int pageNumber = 1, int pageSize = 3)
+        public async Task<IActionResult> GetAllTournaments(string searchString, int pageNumber = 1, int pageSize = 4)
         {
             var excludeRecords = (pageSize * pageNumber) - pageSize;
 
