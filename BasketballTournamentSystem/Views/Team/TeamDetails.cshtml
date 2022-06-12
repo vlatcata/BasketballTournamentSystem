@@ -7,17 +7,18 @@
         <h4 class="card-title">Team Details</h4>
         <div class="basic-form">
             <form method="post">
+                <br />
+                <h2 style="text-align: center;">@Model.Name</h2>
                 <div class="form-group">
-                    <label asp-for="Name">Name</label>
-                    <label asp-for="Name" class="form-control input-flat">@Model.Name</label>
+                    <img asp-for="@Model.ImageUrl" src="@Model.ImageUrl" style="width:400px; display: block; margin-left: auto; margin-right: auto;" />
                 </div>
-                <div class="form-group">
-                    <img asp-for="ImageUrl" src="@Model.ImageUrl" style="width:200px;" />
-                </div>
+                <br />
 
                 <br />
 
-                @{int i = 0;}
+                @{
+                    int i = 0;
+                }
                 @foreach (var player in Model.Players)
                 {
                     <br />

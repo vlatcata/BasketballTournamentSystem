@@ -121,6 +121,7 @@ namespace BasketballTournamentSystem.Core.Services
                 Id = t.Id,
                 Name = t.Name,
                 Result = t.Result,
+                TeamOneScore= t.TeamOneScore,
                 TeamOne = context.Teams.Where(te => te.Id == t.TeamOneId).Select(t => new TeamViewModel()
                 {
                     Id = t.Id,
@@ -141,6 +142,7 @@ namespace BasketballTournamentSystem.Core.Services
                     .ToList(),
                 })
                 .FirstOrDefault(),
+                TeamTwoScore = t.TeamTwoScore,
                 TeamTwo = context.Teams.Where(te => te.Id == t.TeamTwoId).Select(t => new TeamViewModel()
                 {
                     Id = t.Id,

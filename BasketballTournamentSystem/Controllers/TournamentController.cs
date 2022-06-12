@@ -34,7 +34,7 @@ namespace BasketballTournamentSystem.Controllers
                 return View();
             }
 
-            return Redirect("/Tournament/GetAllTournaments");
+            return RedirectToAction(nameof(GetAllTournaments));
         }
 
         public async Task<IActionResult> GetAllTournaments(string searchString, int pageNumber = 1, int pageSize = 3)

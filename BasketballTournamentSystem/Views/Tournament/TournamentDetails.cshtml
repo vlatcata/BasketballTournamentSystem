@@ -7,27 +7,30 @@
         <h4 class="card-title">Tournament Details</h4>
         <div class="basic-form">
             <form method="post">
-                <div class="form-group">
-                    <label>@Model.TeamOne.Name VS @Model.TeamTwo.Name</label>
-                </div>
-                <div class="form-group">
-                    <img asp-for="ImageUrl" src="/img/tournaments.jpg" style="width:200px;" />
+                <div class="col-3" style="margin: auto;">
+                    <div class="card card-widget">
+                        <div class="card-body gradient-3">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h2 class="card-widget__title">@Model.TeamOne.Name VS @Model.TeamTwo.Name</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <br />
 
                 <br />
-                <label>@Model.TeamOne.Name</label>
+                <h2 style="text-align: center;">@Model.TeamOne.Name</h2>
                 <div class="form-group">
-                    <img asp-for="@Model.TeamOne.ImageUrl" src="@Model.TeamOne.ImageUrl" style="width:300px;" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="@Model.TeamOne.Name">Team 1: Name</label>
-                    <label asp-for="@Model.TeamOne.Name" class="form-control input-flat">@Model.TeamOne.Name</label>
+                    <img asp-for="@Model.TeamOne.ImageUrl" src="@Model.TeamOne.ImageUrl" style="width:400px; display: block; margin-left: auto; margin-right: auto;" />
                 </div>
                 <br />
 
-                @{int i = 0; int x = 0;}
+                @{
+                    int i = 0; int x = 0;
+                }
                 @foreach (var player in Model.TeamOne.Players)
                 {
                     i++;
@@ -59,16 +62,13 @@
                         <label asp-for="@player.GamesWon">GamesWon</label>
                         <label asp-for="@player.GamesWon" class="form-control input-flat">@player.GamesWon</label>
                     </div>
+                    <br />
                 }
 
                 <br />
-                <label>@Model.TeamTwo.Name</label>
+                <h2 style="text-align: center;">@Model.TeamTwo.Name</h2>
                 <div class="form-group">
-                    <img asp-for="@Model.TeamTwo.ImageUrl" src="@Model.TeamTwo.ImageUrl" style="width:300px;" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="@Model.TeamOne.Name">Team 2: Name</label>
-                    <label asp-for="@Model.TeamOne.Name" class="form-control input-flat">@Model.TeamOne.Name</label>
+                    <img asp-for="@Model.TeamTwo.ImageUrl" src="@Model.TeamTwo.ImageUrl" style="width:400px; display: block; margin-left: auto; margin-right: auto;" />
                 </div>
                 <br />
 
@@ -103,6 +103,7 @@
                         <label asp-for="@player.GamesWon">GamesWon</label>
                         <label asp-for="@player.GamesWon" class="form-control input-flat">@player.GamesWon</label>
                     </div>
+                    <br />
                 }
 
                 <button asp-controller="Tournaments" asp-action="GetAllTournaments" class="btn mb-1 btn-danger">Close</button>
