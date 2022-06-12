@@ -1,7 +1,9 @@
 ﻿using BasketballTournamentSystem.Core.Contracts;
 using BasketballTournamentSystem.Core.Models.Tournament;
+using BasketballTournamentSystem.Infrastructure.Identity;
 using cloudscribe.Pagination.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BasketballTournamentSystem.Controllers
@@ -10,11 +12,13 @@ namespace BasketballTournamentSystem.Controllers
     {
         private readonly ITournamentService tournamentService;
         private readonly ITeamService teamService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public TournamentController(ITournamentService _tournamentService, ITeamService _teamService)
+        public TournamentController(ITournamentService _tournamentService, ITeamService _teamService, UserManager<ApplicationUser> _userManager)
         {
             tournamentService = _tournamentService;
             teamService = _teamService;
+            userManager = _userManager;
         }
 
         [Authorize]
@@ -27,11 +31,17 @@ namespace BasketballTournamentSystem.Controllers
         [Authorize]
         public async Task<IActionResult> AddTournament(TournamentViewModel model)
         {
+            if (!User.IsInRole("Guest") && !User.IsInRole("Administrator"))
+            {
+                var user = await userManager.GetUserAsync(User);
+                return View("RequestRole", user);
+            }
+
             var result = await tournamentService.AddTournament(model);
 
             if (!result)
             {
-                return View();
+                return Redirect("/Shared/NoTeams");
             }
 
             return RedirectToAction(nameof(GetAllTournaments));

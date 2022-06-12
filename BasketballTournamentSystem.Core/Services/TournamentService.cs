@@ -89,6 +89,11 @@ namespace BasketballTournamentSystem.Core.Services
             var team1 = context.Teams.Select(t => t).Where(t => t.IsInTournament == false).Include(t => t.Players).FirstOrDefault();
             var team2 = context.Teams.Select(t => t).Where(t => t.IsInTournament == false).Skip(1).Include(t => t.Players).FirstOrDefault();
 
+            if (team1 == null || team2 == null)
+            {
+                result = false;
+            }
+
             var tournament = new Tournament()
             {
                 Name = model.Name,

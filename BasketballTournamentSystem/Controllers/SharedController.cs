@@ -33,5 +33,10 @@ namespace BasketballTournamentSystem.Controllers
         {
             return View();
         }
+
+        public IActionResult NoTeams()
+        {
+            return View();
+        }
     }
 }

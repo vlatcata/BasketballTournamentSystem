@@ -1,11 +1,10 @@
 ﻿using BasketballTournamentSystem.Core.Contracts;
 using BasketballTournamentSystem.Core.Models.Player;
 using BasketballTournamentSystem.Infrastructure.Identity;
+using cloudscribe.Pagination.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using cloudscribe.Pagination.Models;
-using BasketballTournamentSystem.Infrastructure.Data;
 
 namespace BasketballTournamentSystem.Controllers
 {
