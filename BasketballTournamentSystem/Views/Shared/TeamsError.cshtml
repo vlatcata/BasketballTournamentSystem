@@ -1,0 +1,13 @@
+﻿<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3>One or both of the teams do not have 5 players. Make sure there are atleast 2 full teams for a tournament.</h3>
+                <form method="post">
+                    <button asp-controller="Team" asp-action="AddTeam" type="submit" method="post" class="btn btn-primary">Add team</button>
+                    <button asp-controller="Team" asp-action="GetAllTeams" type="submit" method="post" class="btn btn-primary">View teams</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

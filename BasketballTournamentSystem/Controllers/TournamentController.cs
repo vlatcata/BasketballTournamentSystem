@@ -41,7 +41,7 @@ namespace BasketballTournamentSystem.Controllers
 
             if (!result)
             {
-                return Redirect("/Shared/NoTeams");
+                return Redirect("/Shared/TeamsError");
             }
 
             return RedirectToAction(nameof(GetAllTournaments));
