@@ -196,6 +196,8 @@ namespace BasketballTournamentSystem.Core.Services
 
             try
             {
+                tournament.TeamOne.IsInTournament = false;
+                tournament.TeamTwo.IsInTournament = false;
                 context.Tournaments.Remove(tournament);
                 await context.SaveChangesAsync();
             }
