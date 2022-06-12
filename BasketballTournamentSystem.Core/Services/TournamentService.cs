@@ -197,7 +197,7 @@ namespace BasketballTournamentSystem.Core.Services
         {
             var result = true;
 
-            var tournament = context.Tournaments.Where(t => t.Id == id).FirstOrDefault();
+            var tournament = context.Tournaments.Where(t => t.Id == id).Include(t => t.TeamOne).Include(t => t.TeamTwo).FirstOrDefault();
 
             try
             {
