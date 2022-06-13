@@ -1,11 +1,5 @@
 ﻿<div class="nk-nav-scroll">
     <ul class="metismenu" id="menu">
-
-        @if (User.Identity.IsAuthenticated)
-        {
-            <a class="label">Hello @User.Identity.Name</a>
-        }
-
         @if (User.IsInRole("Administrator"))
         {
             <li class="nav-label">Users</li>

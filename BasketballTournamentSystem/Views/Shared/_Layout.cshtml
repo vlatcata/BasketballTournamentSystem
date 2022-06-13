@@ -30,7 +30,7 @@
                     <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
                     <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
                     <span class="brand-title">
-                        <img src="images/logo-text.png" alt="">
+                        <img src="/img/site-img-6.png" alt="" style="position: relative; right: 14px;">
                     </span>
                 </a>
             </div>
@@ -51,6 +51,10 @@
                 </div>
                 <div class="header-left">
                     <div class="input-group icons">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="alert alert-light text-primary font-weight-bold">Hello, @User.Identity.Name</div>
+                        }
                     </div>
                 </div>
                 <div class="header-right">
@@ -59,10 +63,14 @@
                         @if (!User.Identity.IsAuthenticated)
                         {
                             <li class="icons dropdown">
-                                <a asp-area="Identity" asp-controller="Account" asp-action="Register" class="btn btn-block btn-outline-secondary btn-lg" aria-current="page">Sign up</a>
+                                <form method="post">
+                                    <button asp-area="Identity" asp-controller="Account" asp-action="Register" class="btn btn-block btn-outline-primary btn-lg" aria-current="page">Sign up</button>
+                                </form>
                             </li>
                             <li class="icons dropdown">
-                                <a asp-area="Identity" asp-controller="Account" asp-action="Login" class="btn btn-block btn-outline-secondary btn-lg">Login</a>
+                                <form method="post">
+                                    <button asp-area="Identity" asp-controller="Account" asp-action="Login" class="btn btn-block btn-outline-primary btn-lg">Login</button>
+                                </form>
                             </li>
                         }
 
@@ -71,7 +79,7 @@
 
                             <li class="icons dropdown">
                                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                                    <button class="btn btn-block btn-outline-secondary btn-lg">Logout</button>
+                                    <button class="btn btn-block btn-outline-primary btn-lg">Logout</button>
                                 </form>
                             </li>
                         }
@@ -115,7 +123,7 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+                <p>Copyright &copy; Designed & Developed by <a href="/">BasketballTS</a> 2022</p>
             </div>
         </div>
         <!--**********************************
